@@ -71,4 +71,9 @@ public class MemberService {
         memberRepository.save(member);
         return mapToMemberResponse(member);
     }
+
+    public void deleteById(Long id) {
+        Member member = memberRepository.findById(id).orElseThrow(NotFoundException::new);
+            memberRepository.delete(member);
+    }
 }

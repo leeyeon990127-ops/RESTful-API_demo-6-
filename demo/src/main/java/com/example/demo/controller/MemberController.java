@@ -59,7 +59,7 @@ public class MemberController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
-        memberRepository.deleteById(id);
+        memberService.deleteById(id);
     }
 
 //    @PatchMapping("/{id}")
@@ -67,4 +67,4 @@ public class MemberController {
 //        return memberService.patch(id, memberRequest);
 //    }
 
-}
+    }
