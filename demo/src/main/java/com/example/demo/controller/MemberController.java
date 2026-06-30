@@ -28,11 +28,11 @@ public class MemberController {
     private final ArticleService articleService;
 
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public MemberResponse post(@RequestBody MemberRequest memberRequest) {
-        return memberService.create(memberRequest);
-    }
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public MemberResponse post(@RequestBody MemberRequest memberRequest) {
+//        return memberService.create(memberRequest);
+//    }
 //    @PostMapping
 //    public Member post(@RequestBody Member member) {
 //        return memberRepository.save(member);
@@ -66,6 +66,14 @@ public class MemberController {
             return member;
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<MemberResponse> postBatch(
+            @RequestBody List<MemberRequest> memberRequests) {
+        return memberService.createBatch(memberRequests);
+    }
+
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
         memberService.deleteById(id);
@@ -91,10 +99,4 @@ public class MemberController {
                 .getRequestDispatcher("/api/articles?memberId=" + id)
                 .forward(request, response);
     }
-
-//    @PatchMapping("/{id}")
-//    public MemberResponse patch(@PathVariable("id") Long id, @RequestBody MemberRequest memberRequest) {
-//        return memberService.patch(id, memberRequest);
-//    }
-
-    }
+}
